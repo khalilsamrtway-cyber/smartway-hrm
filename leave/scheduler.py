@@ -46,9 +46,12 @@ def leave_reset():
             leave_type.save()
 
 
-if not any(
-    cmd in sys.argv
-    for cmd in ["makemigrations", "migrate", "compilemessages", "flush", "shell"]
+if (
+    os.environ.get("RENDER") != "True"
+    and not any(
+        cmd in sys.argv
+        for cmd in ["makemigrations", "migrate", "compilemessages", "flush", "shell"]
+    )
 ):
     """
     Initializes and starts background tasks using APScheduler when the server is running.
