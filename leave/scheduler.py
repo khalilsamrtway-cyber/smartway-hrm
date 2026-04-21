@@ -3,6 +3,7 @@ import calendar
 import datetime as dt
 import sys
 from datetime import datetime, timedelta
+from django.conf import settings
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from dateutil.relativedelta import relativedelta
@@ -48,7 +49,7 @@ def leave_reset():
 
 
 if (
-    os.environ.get("RENDER") != "True"
+    "runserver" in sys.argv
     and not any(
         cmd in sys.argv
         for cmd in ["makemigrations", "migrate", "compilemessages", "flush", "shell"]
