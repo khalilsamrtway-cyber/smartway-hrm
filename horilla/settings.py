@@ -258,3 +258,6 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# Disable APScheduler on Render
+if os.environ.get("RENDER"):
+    APSCHEDULER_AUTOSTART = False
